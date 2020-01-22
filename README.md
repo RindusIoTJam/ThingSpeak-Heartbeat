@@ -32,22 +32,21 @@ At thingspeak.com/apps/matlab_analyses create a `MATLAB Analysis` with name `IFT
 thing_channel = 915121;
 thing_readkey = "NJL2C6UMJVZHOX3U";
 
-% 
+% IFTTT event and key
 ifttt_event   = "outage";
 ifttt_key     = "bhtMLFqdh4H9PzdQbX2mSuayRy_u7_ckcI0cWvxw";
 
-% Read the recent data.
-[idk,timestamp] = thingSpeakRead(thing_channel,'ReadKey',thing_readkey,'NumPoints',1,'Fields',1);
-
-now = datetime('now','Format','dd-MMM-yyyy HH:mm:ss');
-
-if minutes(duration(now-timestamp)) > 2
-    try
+try
+    % Read the recent data.
+    [idk,timestamp] = thingSpeakRead(thing_channel,'ReadKey',thing_readkey,'NumPoints',1,'Fields',1);
+    
+    now = datetime('now','Format','dd-MMM-yyyy HH:mm:ss');
+    
+    if minutes(duration(now-timestamp)) > 2
         fprintf("Trigger: %s\n", webread("https://maker.ifttt.com/trigger/"+ifttt_event+"/with/key/"+ifttt_key));
-    catch someException
-        fprintf("Failed to send alert: %s\n", someException.message);
     end
-
+catch someException
+    fprintf("Failed to send alert: %s\n", someException.message);
 end
 ```
 
