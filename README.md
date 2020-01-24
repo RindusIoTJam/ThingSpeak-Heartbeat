@@ -21,14 +21,14 @@ Click on `That`, search for `email` and click the `Email` applet, then `Send me 
 
 ## ThingSpeak channels
 
-At thingspeak.com/channels create a Channel and note the `Channel ID` and `Read API Key`.
+At thingspeak.com/channels create a Channel and note the `Channel ID`,  `Write API Key` and `Read API Key`.
 
 ## MATHLAB Analyses
 
 At thingspeak.com/apps/matlab_analyses create a `MATLAB Analysis` with name `IFTTT Trigger if no Heartbeat` and content:
 
 ```MATLAB
-% ThingSpeak channels
+% ThingSpeak channel and read api key
 thing_channel = 915121;
 thing_readkey = "NJL2C6UMJVZHOX3U";
 
@@ -64,4 +64,10 @@ At thingspeak.com/apps/timecontrols create a `New TimeControl` with the name `He
 
 ## Wemos D1 Mini
 
-Upload the code with your settings (see `main.h`) to the Wemos D1 Mini.
+Upload the code with your settings (see `main.h`) to the Wemos D1 Mini. 
+
+| Setting | Description | Environment Var |
+| - | - | - |
+| wifi_ssid | The Wifi SSID the D1 Mini connects to. | WIFI_SSID |
+| wifi_pass | The password used to connect to Wifi. | WIFI_PASS |
+| thingspeakApiKey | Write API Key for the heartbeat channel. | THINGSPEAK_HEARTBEAT |

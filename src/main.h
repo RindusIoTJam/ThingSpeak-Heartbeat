@@ -1,7 +1,7 @@
 
 /*
  * Set the next variables with your SSID/Password combination and the 
- * ThinkSpeak READ API KEY
+ * ThinkSpeak *WRITE* API KEY
  * 
  * PLATFORMIO_BUILD_FLAGS=-DWIFI_PASS=\"TopfSigrid\" \
  *                        -DWIFI_SSID=\"Internet\"   \
