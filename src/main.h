@@ -26,7 +26,7 @@ const char* thingspeakApiKey = THINGSPEAK_HEARTBEAT;
 const char* thingspeakApiKey = "YOUR-THINGSPEAK-APIKEY";
 #endif
 
-volatile int     heartbeat = false;
+volatile int     heartbeat = true;
 volatile int     alarm     = false;
 volatile uint8_t seconds   = 0;
 
