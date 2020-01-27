@@ -30,7 +30,7 @@ void setup_wifi() {
 
 void ICACHE_RAM_ATTR inline ISR_timer0() {
   if(alarm) {
-    digitalWrite(LED_BUILTIN, digitalRead(LED_BUILTIN));
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
   
   if(++seconds>119) {
@@ -64,12 +64,13 @@ void setup() {
 void loop() {
   if(heartbeat) {
     heartbeat = false;
-    digitalWrite(LED_BUILTIN, 0);   // LED on
 
     if (WiFi.status() == WL_CONNECTED) {
       if (!client.connect("api.thingspeak.com", 443)) {
+        alarm = true;
         Serial.println("ERROR: connecting to api.thingspeak.com failed");
       } else  {
+        digitalWrite(LED_BUILTIN, 0); // LED on
         client.print(String("GET /update?api_key=") + thingspeakApiKey +
                     "&field1=1" +
                     " HTTP/1.1\r\n" +
@@ -97,7 +98,7 @@ void loop() {
       }
     } else {
       alarm = true;
-      Serial.println("WARN: WiFi not connected!");
+      Serial.println("ERROR: WiFi not connected!");
       WiFi.begin(wifi_ssid, wifi_pass);
     }
   }
