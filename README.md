@@ -2,7 +2,7 @@
 
 ## Abstract
 
-A most minimal setup to detect missing heartbeats provoced
+A most minimal setup to detect missing heartbeats provoked
 by an power- or network-outage.
 
 ## Prerequisites
