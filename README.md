@@ -25,16 +25,10 @@ try
 
     now = datetime('now','Format','dd-MMM-yyyy HH:mm:ss');
 
-    %fprintf("heartbeat %s\n", heartbeat);
-    %fprintf("now       %s\n", now);
-    %fprintf("age   str %s\n", datestr(now-heartbeat,'HH:MM:SS'));
-    %fprintf("age   min %d\n", minutes(duration(now-heartbeat)) );
-
     % write a 0 so React has something to react on
     if minutes(duration(now-heartbeat)) > 3
         thingSpeakWrite(967121,0,'WriteKey',"KO0T51GCEWV76VN3");
     end
-    
 catch someException
     fprintf("Failed to send alert: %s\n", someException.message);
 end
